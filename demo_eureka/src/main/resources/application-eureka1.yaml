@@ -1,0 +1,5 @@
+global:
+   name: eureka1
+   port: 9991
+   load1-ip-port: eureka2:9992
+   load2-ip-port: eureka3:9993

@@ -1,0 +1,23 @@
+spring:
+   profiles: 
+      active: eureka1
+   application:
+      # euerka名必须不同，服务名必须相同
+      name: eureka
+server:
+   name: ${global.name}
+   port: ${global.port}
+   enable-self-preservation: false
+   eviction-interval-timer-in-ms: 2000
+eureka:
+   instance:
+      hostname: ${global.name}
+      # 如果在同一ip下，必须为false。
+      prefer-ip-address: false
+      instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+   client:
+      fetch-registry: true
+      register-with-eureka: true
+      service-url:
+      # 同一ip下的集群，节点用dns或域名
+         defaultZone: http://${global.load1-ip-port}/eureka/,http://${global.load2-ip-port}/eureka/
